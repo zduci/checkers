@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :item_orders, :status
-
-  validates :item_orders, :status, :presence => true
+  attr_accessible :status, :item_orders
+  has_many :item_orders
+  validates_presence_of :status 
 end
