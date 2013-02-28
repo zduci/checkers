@@ -1,2 +1,3 @@
-- @items.each do |item|
-  .item= item.name
+- @items.each_slice(3).to_a.each do |item_row|
+  .row
+    = render item_row
