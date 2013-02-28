@@ -1,11 +1,12 @@
+require_relative '../../lib/gets_items'
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @item_rows = GetsItems.item_rows
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = GetsItems.item(params[:id])
   end
 
 end
