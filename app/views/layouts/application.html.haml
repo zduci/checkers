@@ -17,5 +17,10 @@
           %div.nav-collapse
             %ul.nav
 
-    = yield
+    .row
+      .span9
+        = yield
+      .span3
+        = render 'basket'
+
 
