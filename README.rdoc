@@ -1,4 +1,4 @@
 == Checkers
 
-Checkers is an online order tracking system similar to Domino's.
+Checkers is a basic online store with a real time order tracking system.
 
