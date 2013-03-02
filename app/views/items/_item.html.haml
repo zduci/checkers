@@ -1,6 +1,7 @@
-.span3.item
-  %h4= item.name
-  = item.description
-  %br/
-  %form{ :method => 'link', :action => item_path(item) }
-    %input.btn.order_btn{ :type => 'submit', :value => 'Order' }
+.span3
+  .item
+    %h4= item.name
+    = item.description
+    %br/
+    %form{ :method => 'link', :action => item_path(item) }
+      %input.btn.order_btn{ :type => 'submit', :value => 'Order' }
