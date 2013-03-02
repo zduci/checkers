@@ -1,6 +1,4 @@
 class ItemQuantities
-  unloadable
-
   MAX_QUANTITY = 10
 
   def self.max

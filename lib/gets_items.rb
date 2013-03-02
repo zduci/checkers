@@ -1,5 +1,4 @@
 class GetsItems
-  unloadable
 
   def self.item_rows
     Item.all.each_slice(3).to_a
