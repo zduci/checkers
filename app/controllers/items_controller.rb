@@ -1,4 +1,6 @@
 require_relative '../../lib/gets_items'
+require_relative '../../lib/item_quantities'
+
 class ItemsController < ApplicationController
 
   def index
@@ -7,6 +9,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = GetsItems.item(params[:id])
+    @quantities = ItemQuantities.max
   end
 
 end

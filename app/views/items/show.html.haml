@@ -1,4 +1,8 @@
-.left_margin
+.left_margin.item_block
   %h4= @item.name
   = @item.description
   %br/
+  %b Quantity: 
+  =select_tag(:quantity, options_for_select(@quantities), {:width => '30px'})
+  %form{ :method => 'link' }
+    %input.btn.order_btn{ :type => 'submit', :value => 'Add to order' }
