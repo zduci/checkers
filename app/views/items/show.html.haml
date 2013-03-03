@@ -3,6 +3,7 @@
   = @item.description
   %br/
   %b Quantity: 
-  =select_tag(:quantity, options_for_select(@quantities), {:width => '30px'})
-  %form{ :method => 'link' }
+  = form_tag(item_orders_path) do
+    = hidden_field_tag :item, @item.id
+    = select_tag :quantity, options_for_select(@quantities), {:width => '30px'}
     %input.btn.order_btn{ :type => 'submit', :value => 'Add to order' }

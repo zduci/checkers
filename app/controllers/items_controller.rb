@@ -11,5 +11,4 @@ class ItemsController < ApplicationController
     @item = GetsItems.item(params[:id])
     @quantities = ItemQuantities.max
   end
-
 end
