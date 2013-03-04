@@ -1,13 +1,13 @@
 %h3 Your order
-.row
-  .span1 Item
-  .span1 Quantity
-  .span1 Price
+.row.order_item
+  %b.span1 Item
+  %b.span1 Quantity
+  %b.span1 Price
 - order = RetrievesOrders.find_existing(request.session_options[:id])
 - if order
   - order.item_orders.each do |item_order|
-    .row
+    .row.order_item
       .span1= item_order.item.name
       .span1= item_order.quantity
-      .span1= item_order.item.price
+      .span1= item_order.price
 
