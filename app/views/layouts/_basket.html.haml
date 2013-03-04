@@ -9,5 +9,5 @@
     .row.order_item
       .span1= item_order.item.name
       .span1= item_order.quantity
-      .span1= item_order.price
+      .span1= Prices.for_item_order(item_order)
 
