@@ -25,8 +25,25 @@ describe RetrievesOrders do
     end
   end
 
-  it 'places a order if it exists' do
-    RetrievesOrders.stub(:find_existing) { false }
-    #RetrievesOrders.place_order(order).should == 'lol'
+  context 'tries to place an order' do
+    let(:session_id) { stub }
+
+    it "places an order if it exists and status is pending" do
+      order = mock(:status => 'pending')
+      order.should_receive(:update_attributes).with(:status => 'placed')
+      RetrievesOrders.stub(:find_existing).with(session_id) { order }
+      RetrievesOrders.place_order(session_id).should == true
+    end
+    
+    it "returns false if the order's status is not pending" do
+      order = mock(:status => 'not pending')
+      RetrievesOrders.stub(:find_existing).with(session_id) { order }
+      RetrievesOrders.place_order(session_id).should == false
+    end
+    
+    it "returns false if the order does not exist" do
+      RetrievesOrders.stub(:find_existing).with(session_id) { false }
+      RetrievesOrders.place_order(session_id).should == false
+    end
   end
 end
