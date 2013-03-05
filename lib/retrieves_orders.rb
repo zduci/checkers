@@ -9,6 +9,6 @@ class RetrievesOrders
   end
 
   def self.find_existing(session_id)
-    Order.find_by_session_id(session_id)
+    Order.find_by_session_id(session_id) || false
   end
 end
