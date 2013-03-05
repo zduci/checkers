@@ -14,4 +14,5 @@
   %b.span2 Total Price
   .span1= Prices.for_order(order)
 .row
-  %input.btn.place_order_btn{ :type => 'submit', :value => 'Place order' }
+  = form_tag(tracker_path) do
+    %input.btn.place_order_btn{ :type => 'submit', :value => 'Place order' }
