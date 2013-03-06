@@ -7,10 +7,11 @@ class ItemOrdersController < ApplicationController
       ItemOrder.create!(:quantity => params[:quantity], 
                           :item => item, 
                           :order => order)
-      redirect_to items_path
-    rescue
+    rescue Exception => e
+      puts e
       flash[:error] = "Could not add item to order"
     end
+    redirect_to items_path
   end
 
   def request_id
