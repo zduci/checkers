@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def create
     if RetrievesOrders.place_order(request.session_options[:id])
+      reset_session
       redirect_to tracker_path
     else
       flash[:error] = "Order already placed"
