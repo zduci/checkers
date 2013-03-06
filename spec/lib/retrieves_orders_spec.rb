@@ -4,7 +4,7 @@ describe RetrievesOrders do
 
   context 'retrieves existing order or creates new one' do
     it 'retrieves an existing order by session id' do
-      order = stub
+      order = stub(:status => 'pending')
       Order.stub(:find_by_session_id).with('a session id') { order }
       RetrievesOrders.existing_or_create('a session id').should == order
     end
@@ -14,6 +14,12 @@ describe RetrievesOrders do
       Order.should_receive(:create).with(:session_id => 'a session id',
                                          :status => 'pending')
       RetrievesOrders.existing_or_create('a session id')
+    end
+
+    it 'throws an exception if the order exists but is not pending' do
+      order = stub(:status => 'not pending')
+      Order.stub(:find_by_session_id).with('a session id') { order }
+      expect { RetrievesOrders.existing_or_create('a session id') }.to raise_error
     end
   end
 

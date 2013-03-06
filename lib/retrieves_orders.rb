@@ -1,7 +1,9 @@
 class RetrievesOrders
   def self.existing_or_create(session_id)
     order = find_existing(session_id)
-    unless order
+    if order
+      check_is_pending(order)
+    else
       order = Order.create(:status => 'pending',
                    :session_id => session_id)
     end
@@ -20,5 +22,11 @@ class RetrievesOrders
     else
       false
     end
+  end
+
+  private
+
+  def self.check_is_pending(order)
+    throw Exception.new unless order.status == 'pending'
   end
 end
