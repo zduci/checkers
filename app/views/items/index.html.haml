@@ -1,6 +1,10 @@
-%h3.left_margin Menu
-- if flash[:error]
-  .error.left_margin= flash[:error]
-- @item_rows.each do |item_row|
-  .row
-    = render item_row
+.row
+  .span9
+    %h3.left_margin Menu
+    - if flash[:error]
+      .error.left_margin= flash[:error]
+    - @item_rows.each do |item_row|
+      .row
+        = render item_row
+  .span3
+    = render 'basket'

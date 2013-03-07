@@ -1,9 +1,13 @@
-.left_margin.item_block
-  %h4= @item.name
-  = @item.description
-  %br/
-  %b Quantity: 
-  = form_tag(item_orders_path) do
-    = hidden_field_tag :item, @item.id
-    = select_tag :quantity, options_for_select(@quantities), {:width => '30px'}
-    %input.btn.order_btn{ :type => 'submit', :value => 'Add to order' }
+.row
+  .span9
+    .left_margin.item_block
+      %h4= @item.name
+      = @item.description
+      %br/
+      %b Quantity: 
+      = form_tag(item_orders_path) do
+        = hidden_field_tag :item, @item.id
+        = select_tag :quantity, options_for_select(@quantities), {:width => '30px'}
+        %input.btn.order_btn{ :type => 'submit', :value => 'Add to order' }
+  .span3
+    = render 'basket'
