@@ -1,4 +1,6 @@
 Checkers::Application.routes.draw do
+  devise_for :admins
+
   root :to => redirect('/menu')
   resources :items, :only => [:index, :show], :path => '/menu'
   resources :item_orders, :only => [:create]
