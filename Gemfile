@@ -4,6 +4,8 @@ gem 'rails', '3.2.12'
 
 gem 'pg'
 
+gem 'devise'
+
 gem 'haml-rails'
 
 group :assets do
