@@ -18,8 +18,10 @@
             %span.icon-bar
             %span.icon-bar
           %a.brand{ :href=> "/" } Checkers
-          %div.nav-collapse
-            %ul.nav
+          - if admin_signed_in?
+            %ul.nav.pull-right
+              %li= link_to('Logout', destroy_admin_session_path, :method => :delete)
+
 
     = yield
 
