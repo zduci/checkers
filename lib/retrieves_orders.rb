@@ -4,8 +4,8 @@ class RetrievesOrders
     if order
       check_is_pending(order)
     else
-      order = Order.create(:status => 'pending',
-                   :session_id => session_id)
+      order = Order.create(:status => OrderStatus::PENDING,
+                           :session_id => session_id)
     end
     order
   end
@@ -16,8 +16,8 @@ class RetrievesOrders
 
   def self.place_order(session_id)
     order = find_existing(session_id)
-    if order && order.status == 'pending'
-      order.update_attributes(:status => 'placed')
+    if order && order.status == OrderStatus::PENDING
+      order.update_attributes(:status => OrderStatus::PLACED)
       true
     else
       false
@@ -27,6 +27,6 @@ class RetrievesOrders
   private
 
   def self.check_is_pending(order)
-    throw Exception.new unless order.status == 'pending'
+    throw Exception.new unless order.status == OrderStatus::PENDING
   end
 end
