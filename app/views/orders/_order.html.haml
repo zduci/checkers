@@ -1,2 +1,6 @@
 .span3
-  .order= order.session_id
+  .order
+    %b Order no: 
+    = order.session_id
+    %b Placed at: 
+    = order.created_at
