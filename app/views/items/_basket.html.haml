@@ -14,5 +14,5 @@
     %b.span2 Total Price
     .span1= Prices.for_order(order)
   .row
-    = form_tag(order_path) do
+    = form_tag(orders_path) do
       %input.btn.place_order_btn{ :type => 'submit', :value => 'Place order' }
