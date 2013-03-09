@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_admin!, :only => [:index]
+
   def create
     session_id = request.session_options[:id]
     if RetrievesOrders.place_order(session_id)
@@ -9,6 +11,10 @@ class OrdersController < ApplicationController
       flash[:error] = "Order already placed"
       redirect_to items_path
     end
+  end
+
+  def index
+    @orders = Order.all
   end
 
 end
