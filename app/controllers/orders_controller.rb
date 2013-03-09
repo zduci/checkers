@@ -17,4 +17,7 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def show
+    @order = RetrievesOrders.find_existing_by_id(params[:id])
+  end
 end

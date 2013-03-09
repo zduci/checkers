@@ -4,5 +4,8 @@
     = order.session_id
     %b Placed at: 
     = order.created_at
-    %b Staus:
+    %b Status:
     = order.status.capitalize
+    %form{ :method => 'link', :action => order_path(order) }
+      %input.btn{ :type => 'submit', :value => 'Update status' }
+

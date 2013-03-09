@@ -1,0 +1,8 @@
+.span3
+  .order
+    %b Order no: 
+    = @order.session_id
+    %b Placed at: 
+    = @order.created_at
+    %b Status:
+    = @order.status.capitalize
