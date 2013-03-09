@@ -14,6 +14,10 @@ class RetrievesOrders
     Order.find_by_session_id(session_id) || false
   end
 
+  def self.find_existing_by_id(id)
+    Order.find(id) || false
+  end
+
   def self.place_order(session_id)
     order = find_existing(session_id)
     if order && order.status == OrderStatus::PENDING

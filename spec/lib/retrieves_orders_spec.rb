@@ -29,6 +29,13 @@ describe RetrievesOrders do
       Order.stub(:find_by_session_id).with(session_id) { nil }
       RetrievesOrders.find_existing(session_id).should == false
     end
+
+    it "find order by id" do
+      order = stub
+      id = stub
+      Order.stub(:find).with(id) { order }
+      RetrievesOrders.find_existing_by_id(id).should == order
+    end
   end
 
   context 'tries to place an order' do
