@@ -4,5 +4,7 @@
     = @order.session_id
     %b Placed at: 
     = @order.created_at
-    %b Status:
-    = @order.status.capitalize
+    %b Update status:
+    = form_tag(order_path(@order), :method => 'put', :remote => true, :format => 'json') do
+      = select_tag :status, options_for_select(@statuses)
+      = button_to 'Update'
