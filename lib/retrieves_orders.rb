@@ -28,6 +28,13 @@ class RetrievesOrders
     end
   end
 
+  def self.update_status(id, status)
+    return false unless OrderStatus.includes(status) 
+    order = find_existing_by_id(id)
+    return false if order.status == OrderStatus::DELIVERED
+    order.update_attributes!(:status => status)
+  end
+
   private
 
   def self.check_is_pending(order)

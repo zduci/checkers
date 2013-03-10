@@ -59,4 +59,25 @@ describe RetrievesOrders do
       RetrievesOrders.place_order(session_id).should == false
     end
   end
+
+  context "tries to update an order's status" do
+    let(:id) { stub }
+    let(:order) { double(:status => OrderStatus::PLACED) }
+
+    it "updates the order's status" do
+      order.should_receive(:update_attributes!).with(:status => OrderStatus::DELIVERED) { true }
+      RetrievesOrders.stub(:find_existing_by_id).with(id) { order }
+      RetrievesOrders.update_status(id, OrderStatus::DELIVERED).should == true
+    end
+
+    it "does not update an order with an invalid status" do
+      RetrievesOrders.stub(:find_existing_by_id).with(id) { order }
+      RetrievesOrders.update_status(id, 'invalid status').should == false
+    end
+
+    it "does not update a delivered order" do
+      RetrievesOrders.stub(:find_existing_by_id).with(id) { stub(:status => OrderStatus::DELIVERED) }
+      RetrievesOrders.update_status(id, OrderStatus::DELIVERED).should == false
+    end
+  end
 end
