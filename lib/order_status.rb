@@ -8,11 +8,15 @@ module OrderStatus
   DELIVERED = "delivered"
 
   def self.all
-    constants.map { |status| OrderStatus.const_get(status).capitalize }
+    constants.map { |status| OrderStatus.const_get(status) }
   end
 
   def self.for_select
     constants.map { |status|  [OrderStatus.const_get(status).capitalize, 
                               OrderStatus.const_get(status)] }
+  end
+
+  def self.includes(status)
+    all.include?(status)
   end
 end
