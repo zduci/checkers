@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_admin!, :only => [:index]
 
-  respond_to :html, :json
+  respond_to :html, :js
 
   def create
     session_id = request.session_options[:id]
@@ -26,11 +26,12 @@ class OrdersController < ApplicationController
 
   def update
     respond_to do |format|
-      format.json do
+      format.js do
         if RetrievesOrders.update_status(params[:id], params[:status])
-          render :json => "{'status => 'success'}"
+          @order = RetrievesOrders.find_existing_by_id(params[:id])
+          render 'success'
         else
-          render :json => "{'status' => 'failed'}"
+          render :json => "fail"
         end
       end
     end
