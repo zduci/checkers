@@ -1,4 +1,3 @@
 == Checkers
 
 Checkers is a basic online store with a real time order tracking system.
-
