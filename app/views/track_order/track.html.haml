@@ -2,4 +2,4 @@
 %h3 Track your order in real time
 
 %h4 The current status of your order is:
-#order_status= @order.status.capitalize
+#order_status{:data  => {:session_id => @order.session_id}}= @order.status.capitalize
