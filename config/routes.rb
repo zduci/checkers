@@ -6,5 +6,5 @@ Checkers::Application.routes.draw do
   resources :item_orders, :only => [:create]
   resources :orders, :only => [:create, :index, :show, :update]
   get '/track/:session_id' => 'track_order#track', :as => 'tracker'
-  get '/track/status/:session_id' => 'track_order#status', :as => 'tracker'
+  get '/track/status/:session_id' => 'track_order#status'
 end
