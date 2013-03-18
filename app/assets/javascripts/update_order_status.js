@@ -17,3 +17,15 @@ function get_status(){
   }).done(function(data){
   });
 }
+
+$(document).ready(function(){
+  var Tracker = function(){
+    var canvas = document.getElementById("canvas_status");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle = "rgb(176, 196, 222)";
+    context.fillRect(0, 0, 1000, 200);
+  }
+
+  var tracker = new Tracker();
+});
