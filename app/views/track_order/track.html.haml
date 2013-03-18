@@ -3,3 +3,7 @@
 
 %h4 The current status of your order is:
 #order_status{:data  => {:session_id => @order.session_id}}= @order.status.capitalize
+
+
+.canvas_wrapper
+  %canvas#canvas_status{ :width => "1000", :height => "200"}

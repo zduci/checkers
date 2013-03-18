@@ -10,3 +10,4 @@
     = form_tag(order_path(@order), :method => 'put', :remote => true, :format => 'json') do
       = select_tag :status, options_for_select(@statuses)
       = button_to 'Update'
+    
