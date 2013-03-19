@@ -26,10 +26,21 @@ var Tracker = function(){
     context.fillStyle = fillStyle;
     context.fillRect(0, 0, 1000, 200);
   }
+
+  this.fillSquare = function(number, fillStyle){
+    context.fillStyle = fillStyle;
+    context.fillRect((number - 1) * 200, 0, 200, 200);
+  }
+
 }
 
 $(document).ready(function(){
 
   var tracker = new Tracker();
   tracker.fillBackground("rgb(176, 196, 222)");
+  tracker.fillSquare(1, "rgb(176, 80, 222)");
+  tracker.fillSquare(2, "rgb(176, 0, 70)");
+  tracker.fillSquare(3, "rgb(30, 0, 222)");
+  tracker.fillSquare(4, "rgb(176, 0, 222)");
+  tracker.fillSquare(5, "rgb(176, 0, 0)");
 });
