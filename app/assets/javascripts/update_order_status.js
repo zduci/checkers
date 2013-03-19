@@ -39,9 +39,13 @@ var Tracker = function(){
   }
 
   this.fillText = function(squareNumber){
-    text = "Baking";
+    text = statusText(squareNumber);
     context.font = 'bold 40px Calibri';
     context.fillText(text, startingX(squareNumber)+ 13, 184);
+  }
+
+  function statusText(squareNumber){
+    return ["Placed", "Preparing", "Baking", "Quality Control", "Delivering"][squareNumber - 1];
   }
 
   function startingX(squareNumber){
