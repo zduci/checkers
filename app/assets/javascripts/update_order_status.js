@@ -18,14 +18,18 @@ function get_status(){
   });
 }
 
-$(document).ready(function(){
-  var Tracker = function(){
-    var canvas = document.getElementById("canvas_status");
-    var context = canvas.getContext("2d");
+var Tracker = function(){
+  var canvas = document.getElementById("canvas_status");
+  var context = canvas.getContext("2d");
 
-    context.fillStyle = "rgb(176, 196, 222)";
+  this.fillBackground = function(fillStyle){
+    context.fillStyle = fillStyle;
     context.fillRect(0, 0, 1000, 200);
   }
+}
+
+$(document).ready(function(){
 
   var tracker = new Tracker();
+  tracker.fillBackground("rgb(176, 196, 222)");
 });
