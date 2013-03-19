@@ -38,7 +38,12 @@ var Tracker = function(){
     context.strokeRect(startingX(number), 0, 200, 200);
   }
 
-  this.fillText = function(squareNumber){
+  this.fillText = function(squareNumber, reached){
+    if (reached){
+      context.fillStyle = "rgb(0, 0, 0)";
+    } else {
+      context.fillStyle = "rgb(255, 255, 255)";
+    }
     text = statusText(squareNumber);
     context.font = 'bold 40px Calibri';
     context.fillText(text, startingX(squareNumber)+ 13, 184);
@@ -65,5 +70,5 @@ $(document).ready(function(){
   tracker.fillSquare(3, "rgb(30, 0, 222)");
   tracker.fillSquare(4, "rgb(176, 0, 222)");
   tracker.fillSquare(5, "rgb(176, 0, 0)");
-  tracker.fillText(1);
+  tracker.fillText(1, true);
 });
