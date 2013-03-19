@@ -29,8 +29,19 @@ var Tracker = function(){
 
   this.fillSquare = function(number, fillStyle){
     context.fillStyle = fillStyle;
-    context.fillRect((number - 1) * 200, 0, 200, 200);
+    context.fillRect(startingX(number), 0, 200, 200);
   }
+
+  this.strokeSquare = function(number){
+    context.fillStyle = "rgb(0, 0, 0)";
+    context.lineWidth = 16;
+    context.strokeRect(startingX(number), 0, 200, 200);
+  }
+
+  function startingX(squareNumber){
+    return (squareNumber - 1) * 200;
+  }
+
 
 }
 
@@ -39,6 +50,7 @@ $(document).ready(function(){
   var tracker = new Tracker();
   tracker.fillBackground("rgb(176, 196, 222)");
   tracker.fillSquare(1, "rgb(176, 80, 222)");
+  tracker.strokeSquare(1);
   tracker.fillSquare(2, "rgb(176, 0, 70)");
   tracker.fillSquare(3, "rgb(30, 0, 222)");
   tracker.fillSquare(4, "rgb(176, 0, 222)");
