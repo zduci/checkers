@@ -34,18 +34,21 @@ var Tracker = function(){
 
   this.strokeSquare = function(number){
     context.fillStyle = "rgb(0, 0, 0)";
-    context.lineWidth = 16;
-    context.strokeRect(startingX(number), 0, 200, 200);
+    context.lineWidth = 10;
+    context.strokeRect(startingX(number) + 4, 4, 196, 193);
   }
 
-  this.drawText = function(currentStage){
+  this.draw = function(currentStage){
+    this.fillBackground("rgb(176, 196, 222)");
     for (var i = 1; i <= 5; i++){
       if (i <= currentStage){
+        this.fillSquare(i, "rgb(100, 149, 237)");
         fillText(i, true);
       } else {
         fillText(i, false);
       }
     }
+    this.strokeSquare(currentStage);
   }
 
   function fillText(squareNumber, reached){
@@ -56,7 +59,6 @@ var Tracker = function(){
     }
     text = statusText(squareNumber);
     context.font = 'bold 40px Calibri';
-    context.width = 100;
     context.fillText(text, startingX(squareNumber)+ 13, 184);
   }
 
@@ -74,12 +76,5 @@ var Tracker = function(){
 $(document).ready(function(){
 
   var tracker = new Tracker();
-  tracker.fillBackground("rgb(176, 196, 222)");
-  tracker.fillSquare(1, "rgb(176, 80, 222)");
-  tracker.strokeSquare(1);
-  tracker.fillSquare(2, "rgb(176, 0, 70)");
-  tracker.fillSquare(3, "rgb(30, 0, 222)");
-  tracker.fillSquare(4, "rgb(176, 0, 222)");
-  tracker.fillSquare(5, "rgb(176, 0, 0)");
-  tracker.drawText(2);
+  tracker.draw(4);
 });
