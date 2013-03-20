@@ -38,7 +38,17 @@ var Tracker = function(){
     context.strokeRect(startingX(number), 0, 200, 200);
   }
 
-  this.fillText = function(squareNumber, reached){
+  this.drawText = function(currentStage){
+    for (var i = 1; i <= 5; i++){
+      if (i <= currentStage){
+        fillText(i, true);
+      } else {
+        fillText(i, false);
+      }
+    }
+  }
+
+  function fillText(squareNumber, reached){
     if (reached){
       context.fillStyle = "rgb(0, 0, 0)";
     } else {
@@ -46,11 +56,12 @@ var Tracker = function(){
     }
     text = statusText(squareNumber);
     context.font = 'bold 40px Calibri';
+    context.width = 100;
     context.fillText(text, startingX(squareNumber)+ 13, 184);
   }
 
   function statusText(squareNumber){
-    return ["Placed", "Preparing", "Baking", "Quality Control", "Delivering"][squareNumber - 1];
+    return ["Placed", "Preparing", "Baking", "Q Control", "Delivering"][squareNumber - 1];
   }
 
   function startingX(squareNumber){
@@ -70,5 +81,5 @@ $(document).ready(function(){
   tracker.fillSquare(3, "rgb(30, 0, 222)");
   tracker.fillSquare(4, "rgb(176, 0, 222)");
   tracker.fillSquare(5, "rgb(176, 0, 0)");
-  tracker.fillText(1, true);
+  tracker.drawText(2);
 });
