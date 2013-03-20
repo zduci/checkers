@@ -52,7 +52,7 @@ var Tracker = function(){
   }
 
   function fillText(squareNumber, reached){
-    if (reached){
+    if (!reached){
       context.fillStyle = "rgb(0, 0, 0)";
     } else {
       context.fillStyle = "rgb(255, 255, 255)";
