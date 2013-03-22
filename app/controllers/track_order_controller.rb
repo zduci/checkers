@@ -1,5 +1,5 @@
 class TrackOrderController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :json
 
   def track
     @order = RetrievesOrders.find_existing(params[:session_id])
@@ -10,9 +10,9 @@ class TrackOrderController < ApplicationController
 
   def status
     respond_to do |format|
-      format.js do
-        @order = RetrievesOrders.find_existing(params[:session_id])
-        render 'update'
+      format.json do
+        order = RetrievesOrders.find_existing(params[:session_id])
+        render :json => { 'status' => order.status }
       end
     end
   end
