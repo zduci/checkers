@@ -19,16 +19,20 @@ var Tracker = function(){
   }
 
   this.draw = function(currentStage){
-    this.fillBackground("rgb(176, 196, 222)");
-    for (var i = 1; i <= 5; i++){
-      if (i <= currentStage){
-        this.fillSquare(i, "rgb(100, 149, 237)");
-        fillText(i, true);
-      } else {
-        fillText(i, false);
+    if (currentStage == 6){
+      this.itemDelivered();
+    } else {
+      this.fillBackground("rgb(176, 196, 222)");
+      for (var i = 1; i <= 5; i++){
+        if (i <= currentStage){
+          this.fillSquare(i, "rgb(100, 149, 237)");
+          fillText(i, true);
+        } else {
+          fillText(i, false);
+        }
       }
+      this.strokeSquare(currentStage);
     }
-    this.strokeSquare(currentStage);
   }
 
   function fillText(squareNumber, reached){
@@ -48,5 +52,12 @@ var Tracker = function(){
 
   function startingX(squareNumber){
     return (squareNumber - 1) * 200;
+  }
+
+  this.itemDelivered = function(){
+    this.fillBackground("rgb(100, 149, 237)");
+    context.font = 'bold 60px Calibri';
+    context.fillStyle = "rgb(255, 255, 255)";
+    context.fillText("Your order has been delivered. Enjoy", 10, 180); 
   }
 }
