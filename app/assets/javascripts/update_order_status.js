@@ -1,31 +1,31 @@
-function update_status(new_status){
-  $('#order_status').text(new_status);
+function updateStatus(newStatus){
+  $('#order_status').text(newStatus);
 }
 
-function session_id(){
+function sessionId(){
   return $('#order_status').data('sessionId');
 }
 
 $(document).ready(function(){
   tracker = new Tracker();
-  get_status();
-  setInterval(get_status, 30000);
+  getStatus();
+  setInterval(getStatus, 30000);
 });
 
-function get_status(){
+function getStatus(){
   $.ajax({
-    url:  "/track/status/" + session_id(),
+    url:  "/track/status/" + sessionId(),
     type: "GET",
   }).done(function(data){
-    update_canvas_status(data.status);
+    updateCanvasStatus(data.status);
   });
 }
 
 
-function update_canvas_status(status){
-  tracker.draw(status_number(status));
+function updateCanvasStatus(status){
+  tracker.draw(statusNumber(status));
 }
 
-function status_number(status){
+function statusNumber(status){
   return ["placed", "preparing", "baking", "quality control", "delivering", "delivered"].indexOf(status) + 1;
 }
