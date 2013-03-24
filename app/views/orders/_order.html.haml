@@ -1,7 +1,7 @@
 .span3
   .order
     %b Order no: 
-    = order.session_id
+    = link_to order.session_id, order_path(order)
     %b Placed at: 
     = order.created_at
     %b Status:
