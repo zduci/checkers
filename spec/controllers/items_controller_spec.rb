@@ -11,9 +11,12 @@ describe ItemsController do
   it 'returns an item' do
     id = "42"
     item = stub
+    max = stub
     GetsItems.stub(:item).with(id) { item }
+    ItemQuantities.stub(:max) { max }
     get :show, :id => id
     assigns[:item].should == item
+    assigns[:quantities].should == max
   end
 
 end
