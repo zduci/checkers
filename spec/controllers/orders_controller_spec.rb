@@ -1,4 +1,5 @@
 require 'spec_helper'
+include Devise::TestHelpers
 
 describe OrdersController do
   context 'creats a new item' do
@@ -16,6 +17,14 @@ describe OrdersController do
       get :create
       response.should redirect_to(items_path)
     end
+  end
+
+  it 'lists all orders if logged in' do
+    sign_in FactoryGirl.create(:admin)
+    orders = stub
+    Order.stub(:all) { orders }
+    get :index
+    assigns[:orders].should == orders
   end
 
 end
