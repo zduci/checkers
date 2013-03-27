@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_admin!, :only => [:index, :update]
+  before_filter :authenticate_admin!, :only => [:index, :update, :show]
 
   respond_to :html, :js
 
