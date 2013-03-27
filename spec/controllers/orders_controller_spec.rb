@@ -19,12 +19,17 @@ describe OrdersController do
     end
   end
 
-  it 'lists all orders if logged in' do
-    sign_in FactoryGirl.create(:admin)
-    orders = stub
-    Order.stub(:all) { orders }
-    get :index
-    assigns[:orders].should == orders
-  end
+  context 'listing all orders' do
+    it 'works if logged in' do
+      sign_in FactoryGirl.create(:admin)
+      orders = stub
+      Order.stub(:all) { orders }
+      get :index
+      assigns[:orders].should == orders
+    end
 
+    it 'fails if not logged in' do
+      expect { get :index }.to raise_error NoMethodError
+    end
+  end
 end
