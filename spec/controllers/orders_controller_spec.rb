@@ -32,4 +32,23 @@ describe OrdersController do
       expect { get :index }.to raise_error NoMethodError
     end
   end
+
+  context 'showing an order' do
+    let(:id) { '1337' }
+
+    it 'works if logged in' do
+      sign_in FactoryGirl.create(:admin)
+      order = stub
+      statuses = stub
+      RetrievesOrders.stub(:find_existing_by_id).with(id) { order }
+      OrderStatus.stub(:for_select) { statuses }
+      get :show, :id => id
+      assigns[:order].should == order
+      assigns[:statuses].should == statuses
+    end
+
+    it 'fails if not logged in' do
+      expect { get :show, :id => id }.to raise_error NoMethodError
+    end
+  end
 end
