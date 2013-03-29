@@ -8,7 +8,6 @@ class ItemOrdersController < ApplicationController
                           :item => item, 
                           :order => order)
     rescue Exception => e
-      puts e
       flash[:error] = "Could not add item to order"
     end
     redirect_to items_path
@@ -17,5 +16,4 @@ class ItemOrdersController < ApplicationController
   def request_id
     request.session_options[:id]
   end
-
 end
