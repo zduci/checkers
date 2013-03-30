@@ -15,4 +15,12 @@ describe TrackOrderController do
     get :track, :session_id => session_id
     response.should redirect_to :root
   end
+
+  it 'returns the status of an order' do
+    status = 'current status'
+    order = stub(:status => status)
+    RetrievesOrders.stub(:find_existing).with(session_id) { order }
+    get :status, :session_id => session_id, :format => :json
+    response.body.should == "{\"status\":\"current status\"}"
+  end
 end
