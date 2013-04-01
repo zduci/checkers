@@ -8,4 +8,17 @@ describe OrderStatus do
                                       ["Delivering", "delivering"], 
                                       ["Delivered", "delivered"]]
   end
+
+  it 'retrieves all statuses' do
+    OrderStatus.stub(:constants) { [:PENDING, :PLACED] }
+    OrderStatus.stub(:const_get).with(:PENDING) { 'pending' }
+    OrderStatus.stub(:const_get).with(:PLACED) { 'placed' }
+    OrderStatus.all.should == ['pending', 'placed']
+  end
+
+  it 'checks whether a status exists' do
+    OrderStatus.stub(:all) { ['pending'] }
+    OrderStatus.includes('pending').should == true
+    OrderStatus.includes('placed').should == false
+  end
 end
