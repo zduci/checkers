@@ -7,6 +7,5 @@ describe ItemQuantities do
 
   it 'creates the array of values for the max quantity of orderable items' do
     ItemQuantities.max.should == ItemQuantities.create_for(ItemQuantities::MAX_QUANTITY)
-
   end
 end
