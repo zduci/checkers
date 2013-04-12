@@ -4,4 +4,4 @@
     = item.description
     %br/
     %form{ :method => 'link', :action => item_path(item) }
-      %input.btn.order_btn{ :type => 'submit', :value => 'Select quantity' }
+      %input.btn.order_btn{ :type => 'submit', :value => 'Select quantity', :id => "select_#{item.id}" }
