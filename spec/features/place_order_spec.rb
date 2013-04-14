@@ -1,13 +1,14 @@
 require 'spec_helper'
 describe "placing an order", :type => :feature do
-
-    it 'displays items' do
+    before(:each) do
       Item.stub(:all) { [FactoryGirl.create(:item)] }
-      visit '/menu'
-
-      puts page.body
-      page.should have_content 'Cheese Pizza'
-      page.should have_content 'Very cheesy'
     end
 
+    it 'displays items' do
+      visit '/menu'
+
+      page.should have_content 'Cheese Pizza'
+      page.should have_content 'Very cheesy'
+      page.should have_content '9.99'
+    end
 end

@@ -3,5 +3,7 @@
     %h4= item.name
     = item.description
     %br/
+    %b= "Price:  #{item.price}"
+    %br/
     %form{ :method => 'link', :action => item_path(item) }
       %input.btn.order_btn{ :type => 'submit', :value => 'Select quantity', :id => "select_#{item.id}" }
