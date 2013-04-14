@@ -4,6 +4,8 @@
       %h4= @item.name
       = @item.description
       %br/
+      %b= "Price:  #{@item.price}"
+      %br/
       %b Quantity: 
       = form_tag(item_orders_path) do
         = hidden_field_tag :item, @item.id
