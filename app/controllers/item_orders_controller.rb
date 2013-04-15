@@ -2,11 +2,9 @@ class ItemOrdersController < ApplicationController
 
   def create
     begin
-      order = RetrievesOrders.existing_or_create(request_id)
-      item = Item.find(params[:item])
-      ItemOrder.create!(:quantity => params[:quantity], 
-                          :item => item, 
-                          :order => order)
+      CreatesOrders.create(request_id,
+                           params[:item],
+                           params[:quantity])
     rescue Exception => e
       flash[:error] = "Could not add item to order"
     end
