@@ -1,4 +1,4 @@
-class CreatesOrders
+class CreatesItemOrders
   def self.create(request_id, item_id, quantity)
       order = RetrievesOrders.existing_or_create(request_id)
       item = Item.find(item_id)
