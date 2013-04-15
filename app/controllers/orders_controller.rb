@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   respond_to :html, :js
 
   def create
-    session_id = request.session_options[:id]
+    session_id = session[:session_id]
     if RetrievesOrders.place_order(session_id)
       @order = RetrievesOrders.find_existing(session_id)
       reset_session
