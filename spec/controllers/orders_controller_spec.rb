@@ -61,13 +61,13 @@ describe OrdersController do
         order = stub
         RetrievesOrders.stub(:place_order) { true }
         RetrievesOrders.stub(:find_existing) { order } 
-        get :create
+        post :create
         assigns[:order].should == order
       end
 
       it 'does not create a new item if it is already created and redirects to items path' do
         RetrievesOrders.stub(:place_order) { false }
-        get :create
+        post :create
         response.should redirect_to(items_path)
       end
     end
