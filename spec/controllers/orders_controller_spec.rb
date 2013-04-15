@@ -59,14 +59,13 @@ describe OrdersController do
     context 'creates a new item' do
       it 'creates a new item' do
         order = stub
-        RetrievesOrders.stub(:place_order) { true }
-        RetrievesOrders.stub(:find_existing) { order } 
+        RetrievesOrders.stub(:place_order) { order }
         post :create
         assigns[:order].should == order
       end
 
       it 'does not create a new item if it is already created and redirects to items path' do
-        RetrievesOrders.stub(:place_order) { false }
+        RetrievesOrders.stub(:place_order).and_raise(RetrievesOrders::InvalidOrderException.new)
         post :create
         response.should redirect_to(items_path)
       end

@@ -1,4 +1,4 @@
-require_relative '../../lib/retrieves_orders'
+require 'spec_helper'
 
 describe RetrievesOrders do
 
@@ -45,18 +45,18 @@ describe RetrievesOrders do
       order = mock(:status => 'pending')
       order.should_receive(:update_attributes).with(:status => 'placed')
       RetrievesOrders.stub(:find_existing).with(session_id) { order }
-      RetrievesOrders.place_order(session_id).should == true
+      RetrievesOrders.place_order(session_id).should == order
     end
     
     it "returns false if the order's status is not pending" do
       order = mock(:status => 'not pending')
       RetrievesOrders.stub(:find_existing).with(session_id) { order }
-      RetrievesOrders.place_order(session_id).should == false
+      expect { RetrievesOrders.place_order(session_id) }.to raise_error
     end
     
     it "returns false if the order does not exist" do
       RetrievesOrders.stub(:find_existing).with(session_id) { false }
-      RetrievesOrders.place_order(session_id).should == false
+      expect { RetrievesOrders.place_order(session_id) }.to raise_error
     end
   end
 

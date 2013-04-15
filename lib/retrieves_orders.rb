@@ -22,9 +22,9 @@ class RetrievesOrders
     order = find_existing(session_id)
     if order && order.status == OrderStatus::PENDING
       order.update_attributes(:status => OrderStatus::PLACED)
-      true
+      order
     else
-      false
+      fail InvalidOrderException.new
     end
   end
 
@@ -39,5 +39,8 @@ class RetrievesOrders
 
   def self.check_is_pending(order)
     throw Exception.new unless order.status == OrderStatus::PENDING
+  end
+
+  class InvalidOrderException < StandardError
   end
 end
