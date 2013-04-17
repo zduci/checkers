@@ -41,7 +41,6 @@ describe "placing an order", :type => :feature do
 
     def select_quantity
       click_button 'Select quantity'
-      puts page.body
       select '10', :from => 'quantity'
       click_button 'Add to order'
     end
