@@ -8,7 +8,7 @@ describe "placing an order", :type => :feature do
     end
 
     it 'displays items' do
-      visit '/menu'
+      visit_menu
 
       page.should have_content 'Cheese Pizza'
       page.should have_content 'Very cheesy'
@@ -16,26 +16,33 @@ describe "placing an order", :type => :feature do
     end
 
     it "adds items to the basket" do
-      visit '/menu'
+      visit_menu
+      select_quantity
 
-      click_button 'Select quantity'
-      puts page.body
-      select '10', :from => 'quantity'
-
-      click_button 'Add to order'
       page.should have_content 'Total Price 99.9'
     end
 
     it "places an order" do
-      visit '/menu'
+      visit_menu
+      select_quantity
+      place_order
 
+      page.should have_content 'Track your order in real time'
+      page.should have_content 'Placed'
+    end
+
+    def visit_menu
+      visit '/menu'
+    end
+
+    def select_quantity
       click_button 'Select quantity'
       puts page.body
       select '10', :from => 'quantity'
-
       click_button 'Add to order'
+    end
+
+    def place_order
       click_button 'Place order'
-      page.should have_content 'Track your order in real time'
-      page.should have_content 'Placed'
     end
 end
