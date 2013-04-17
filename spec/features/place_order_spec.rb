@@ -25,4 +25,17 @@ describe "placing an order", :type => :feature do
       click_button 'Add to order'
       page.should have_content 'Total Price 99.9'
     end
+
+    it "places an order" do
+      visit '/menu'
+
+      click_button 'Select quantity'
+      puts page.body
+      select '10', :from => 'quantity'
+
+      click_button 'Add to order'
+      click_button 'Place order'
+      page.should have_content 'Track your order in real time'
+      page.should have_content 'Placed'
+    end
 end
