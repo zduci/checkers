@@ -3,6 +3,10 @@ require 'spec_helper'
 describe "placing an order", :type => :feature do
     let(:item) { FactoryGirl.create(:item) }
 
+    before(:all) do
+      ActionController::Base.allow_forgery_protection = true
+    end
+
     before(:each) do
       Item.stub(:all) { [ item ] }
     end
