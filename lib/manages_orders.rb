@@ -1,4 +1,4 @@
-class RetrievesOrders
+class ManagesOrders
   def self.existing_or_create(session_id)
     order = find_existing(session_id)
     if order

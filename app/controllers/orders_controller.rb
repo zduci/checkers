@@ -6,10 +6,10 @@ class OrdersController < ApplicationController
   def create
     session_id = request.session_options[:id]
     begin
-      @order = RetrievesOrders.place_order(session_id)
+      @order = ManagesOrders.place_order(session_id)
       reset_session
       redirect_to tracker_path(session_id)
-    rescue RetrievesOrders::InvalidOrderException
+    rescue ManagesOrders::InvalidOrderException
       flash[:error] = "Order already placed"
       redirect_to items_path
     end
@@ -20,15 +20,15 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = RetrievesOrders.find_existing_by_id(params[:id])
+    @order = ManagesOrders.find_existing_by_id(params[:id])
     @statuses = OrderStatus.for_select
   end
 
   def update
     respond_to do |format|
       format.js do
-        if RetrievesOrders.update_status(params[:id], params[:status])
-          @order = RetrievesOrders.find_existing_by_id(params[:id])
+        if ManagesOrders.update_status(params[:id], params[:status])
+          @order = ManagesOrders.find_existing_by_id(params[:id])
           render 'success'
         else
           render :json => "fail"

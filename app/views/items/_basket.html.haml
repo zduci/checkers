@@ -3,7 +3,7 @@
   %b.span1 Item
   %b.span1 Quantity
   %b.span1 Price
-- order = RetrievesOrders.find_existing(request.session_options[:id])
+- order = ManagesOrders.find_existing(request.session_options[:id])
 - if order
   - order.item_orders.each do |item_order|
     .row.order_item

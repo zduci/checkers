@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../../lib/creates_item_orders.rb'
-require_relative '../../lib/retrieves_orders.rb'
 
 describe CreatesItemOrders do
   it 'creates a new item order' do
@@ -9,7 +7,7 @@ describe CreatesItemOrders do
     item_id = '42'
     item = stub
     quantity = '1'
-    RetrievesOrders.stub(:existing_or_create).with(request_id)  { order }
+    ManagesOrders.stub(:existing_or_create).with(request_id)  { order }
     Item.should_receive(:find).with(item_id) { item }
     ItemOrder.should_receive(:create!).with(:quantity => quantity,
                                             :item => item,
