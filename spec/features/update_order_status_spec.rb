@@ -33,6 +33,20 @@ describe 'changing an order status', :type => :feature do
       page.should have_content 'Status: Placed'
     end
 
+    it 'can change the order status', :js => true do
+      visit_menu
+      select_quantity
+      place_order
+      log_in
+      visit_orders
+
+      click_on 'Update status'
+      select 'Preparing', :from => 'status'
+      click_on 'Update'
+
+      page.should have_content 'Current status: Preparing'
+    end
+
     def log_in
       login_as(admin, :scope => :admin)
     end
