@@ -26,4 +26,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'launchy'
+  gem 'database_cleaner'
 end
