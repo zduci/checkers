@@ -24,6 +24,16 @@ describe 'changing an order status', :type => :feature do
       page.should have_content 'Logout'
     end
 
+    it 'displays the initial order status' do
+      visit_menu
+      select_quantity
+      place_order
+      log_in
+      visit_orders
+
+      page.should have_content 'Status: Placed'
+    end
+
     def log_in
       login_as(admin, :scope => :admin)
     end
