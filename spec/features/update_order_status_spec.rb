@@ -47,7 +47,6 @@ describe 'changing an order status', :type => :feature do
       click_on 'Update'
 
       visit order_url
-      save_and_open_page
       page.should have_content 'Preparing'
     end
 end
