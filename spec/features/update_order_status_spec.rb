@@ -6,7 +6,6 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 describe 'changing an order status', :type => :feature do
-    let(:item) { FactoryGirl.create(:item) }
     let(:admin) { FactoryGirl.create(:admin) }
 
     before(:all) do
@@ -14,7 +13,7 @@ describe 'changing an order status', :type => :feature do
     end
 
     before(:each) do
-      Item.stub(:all) { [ item ] }
+      FactoryGirl.create(:item)
     end
 
     it 'allows admins to log in' do

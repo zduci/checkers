@@ -4,14 +4,12 @@ require_relative 'place_order_helper'
 include PlaceOrderHelper
 
 describe "placing an order", :type => :feature do
-    let(:item) { FactoryGirl.create(:item) }
-
     before(:all) do
       ActionController::Base.allow_forgery_protection = true
     end
 
     before(:each) do
-      Item.stub(:all) { [ item ] }
+      FactoryGirl.create(:item)
     end
 
     it 'displays items' do
