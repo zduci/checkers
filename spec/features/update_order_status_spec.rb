@@ -47,6 +47,23 @@ describe 'changing an order status', :type => :feature do
       page.should have_content 'Current status: Preparing'
     end
 
+    it 'updates the order status the user sees', :js => true do
+      visit_menu
+      select_quantity
+      place_order
+      order_url = current_url
+      log_in
+      visit_orders
+
+      click_on 'Update status'
+      select 'Preparing', :from => 'status'
+      click_on 'Update'
+
+      visit order_url
+      save_and_open_page
+      page.should have_content 'Preparing'
+    end
+
     def log_in
       login_as(admin, :scope => :admin)
     end
