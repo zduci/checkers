@@ -22,4 +22,12 @@ module PlaceOrderHelper
       visit_orders
       order_url
     end
+
+    def log_in
+      login_as(admin, :scope => :admin)
+    end
+
+    def visit_orders
+      visit '/orders'
+    end
 end

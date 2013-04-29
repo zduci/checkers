@@ -24,21 +24,13 @@ describe 'changing an order status', :type => :feature do
     end
 
     it 'displays the initial order status' do
-      visit_menu
-      select_quantity
-      place_order
-      log_in
-      visit_orders
+      place_order_log_in_and_visit_orders
 
       page.should have_content 'Status: Placed'
     end
 
     it 'can change the order status', :js => true do
-      visit_menu
-      select_quantity
-      place_order
-      log_in
-      visit_orders
+      place_order_log_in_and_visit_orders
 
       click_on 'Update status'
       select 'Preparing', :from => 'status'
@@ -48,12 +40,7 @@ describe 'changing an order status', :type => :feature do
     end
 
     it 'updates the order status the user sees', :js => true do
-      visit_menu
-      select_quantity
-      place_order
-      order_url = current_url
-      log_in
-      visit_orders
+      order_url = place_order_log_in_and_visit_orders
 
       click_on 'Update status'
       select 'Preparing', :from => 'status'
@@ -62,13 +49,5 @@ describe 'changing an order status', :type => :feature do
       visit order_url
       save_and_open_page
       page.should have_content 'Preparing'
-    end
-
-    def log_in
-      login_as(admin, :scope => :admin)
-    end
-
-    def visit_orders
-      visit '/orders'
     end
 end
