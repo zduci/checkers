@@ -1,4 +1,7 @@
 require 'spec_helper'
+require_relative 'place_order_helper'
+
+include PlaceOrderHelper
 
 describe "placing an order", :type => :feature do
     let(:item) { FactoryGirl.create(:item) }
@@ -33,19 +36,5 @@ describe "placing an order", :type => :feature do
 
       page.should have_content 'Track your order in real time'
       page.should have_content 'Placed'
-    end
-
-    def visit_menu
-      visit '/menu'
-    end
-
-    def select_quantity
-      click_button 'Select quantity'
-      select '10', :from => 'quantity'
-      click_button 'Add to order'
-    end
-
-    def place_order
-      click_button 'Place order'
     end
 end
